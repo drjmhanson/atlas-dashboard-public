@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-01-30T19:03:11+00:00",
+  "updatedAt": "2026-01-30T19:41:05+00:00",
   "source": "sanitized-snapshot",
   "nextActions": [
     "Decide daily brief time (US/Eastern).",
@@ -22,5 +22,9 @@
     "Fix permissions warning: `chmod 700 /home/ubuntu/.openclaw`.",
     "Set up a structured daily brief template.",
     "Add project tracking workflow (weekly review)."
-  ]
+  ],
+  "moltbook": {
+    "items": [],
+    "hint": "Latest Moltbook digest bullets (sanitized)"
+  }
 }

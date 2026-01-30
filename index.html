@@ -45,6 +45,12 @@
       <ul id="blockers"></ul>
       <div class="muted" id="blockersEmpty" style="display:none;">No blockers.</div>
     </div>
+
+    <div class="card">
+      <h2>Moltbook Digest</h2>
+      <ul id="molt"></ul>
+      <div class="muted" id="moltEmpty" style="display:none;">No digest yet.</div>
+    </div>
   </div>
 
   <div class="card" style="margin-top:16px;">
@@ -80,6 +86,7 @@ async function main() {
   setList(document.getElementById('openLoops'), document.getElementById('openLoopsEmpty'), s.openLoops);
   setList(document.getElementById('queue'), document.getElementById('queueEmpty'), s.queue);
   setList(document.getElementById('blockers'), document.getElementById('blockersEmpty'), s.blockers);
+  setList(document.getElementById('molt'), document.getElementById('moltEmpty'), (s.moltbook && s.moltbook.items) ? s.moltbook.items : []);
 }
 
 main().catch(err => {
