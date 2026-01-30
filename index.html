@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Atlas Dashboard (Sanitized)</title>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; margin: 24px; color:#111; }
+    .muted { color:#555; }
+    .grid { display:grid; grid-template-columns: 1fr; gap:16px; }
+    @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    .card { border:1px solid #ddd; border-radius:12px; padding:16px; background:#fff; }
+    h1 { margin:0 0 8px; }
+    h2 { margin:0 0 12px; font-size: 16px; }
+    ul { margin:0; padding-left: 18px; }
+    code { background:#f6f6f6; padding:2px 6px; border-radius:6px; }
+    .pill { display:inline-block; background:#f2f2f2; padding:2px 8px; border-radius:999px; font-size:12px; margin-left:8px; }
+  </style>
+</head>
+<body>
+  <h1>Atlas Dashboard <span class="pill">sanitized</span></h1>
+  <div class="muted" id="meta">Loading…</div>
+
+  <div class="grid" style="margin-top:16px;">
+    <div class="card">
+      <h2>Next Actions</h2>
+      <ul id="nextActions"></ul>
+      <div class="muted" id="nextActionsEmpty" style="display:none;">No next actions.</div>
+    </div>
+
+    <div class="card">
+      <h2>Open Loops</h2>
+      <ul id="openLoops"></ul>
+      <div class="muted" id="openLoopsEmpty" style="display:none;">No open loops.</div>
+    </div>
+
+    <div class="card">
+      <h2>Top Queue (from BACKLOG)</h2>
+      <ul id="queue"></ul>
+      <div class="muted" id="queueEmpty" style="display:none;">Queue empty.</div>
+    </div>
+
+    <div class="card">
+      <h2>Blockers</h2>
+      <ul id="blockers"></ul>
+      <div class="muted" id="blockersEmpty" style="display:none;">No blockers.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h2>Notes</h2>
+    <div class="muted">
+      This page is generated from a sanitized snapshot (no emails, tokens, message content).
+    </div>
+  </div>
+
+<script>
+function setList(el, emptyEl, items) {
+  el.innerHTML = '';
+  if (!items || items.length === 0) {
+    emptyEl.style.display = 'block';
+    return;
+  }
+  emptyEl.style.display = 'none';
+  for (const it of items) {
+    const li = document.createElement('li');
+    li.textContent = it;
+    el.appendChild(li);
+  }
+}
+
+async function main() {
+  const res = await fetch('./state.json', { cache: 'no-store' });
+  if (!res.ok) throw new Error('Failed to load state.json');
+  const s = await res.json();
+
+  document.getElementById('meta').textContent = `Updated: ${s.updatedAt} · Source: ${s.source}`;
+
+  setList(document.getElementById('nextActions'), document.getElementById('nextActionsEmpty'), s.nextActions);
+  setList(document.getElementById('openLoops'), document.getElementById('openLoopsEmpty'), s.openLoops);
+  setList(document.getElementById('queue'), document.getElementById('queueEmpty'), s.queue);
+  setList(document.getElementById('blockers'), document.getElementById('blockersEmpty'), s.blockers);
+}
+
+main().catch(err => {
+  document.getElementById('meta').textContent = `Error: ${err.message}`;
+});
+</script>
+</body>
+</html>

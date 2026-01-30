@@ -1,0 +1,26 @@
+{
+  "updatedAt": "2026-01-30T19:03:11+00:00",
+  "source": "sanitized-snapshot",
+  "nextActions": [
+    "Decide daily brief time (US/Eastern).",
+    "Add Gmail labeling scheme (optional) before archiving."
+  ],
+  "openLoops": [
+    "Decide daily brief time (US/Eastern).",
+    "Add Gmail labeling scheme (optional) before archiving.",
+    "Create systemd timer for `tools/rate_guard.py` (auto-switch on OpenAI rate limit).",
+    "Check memory/2026-01-30.md for latest"
+  ],
+  "blockers": [
+    "_None recorded_"
+  ],
+  "queue": [
+    "Decide daily brief time (US/Eastern).",
+    "Add Gmail labeling scheme (optional) before archiving.",
+    "Create systemd timer for `tools/rate_guard.py` (auto-switch on OpenAI rate limit).",
+    "Rotate secrets that were pasted in chat (MiniMax key, X password, OAuth client secret) and update config.",
+    "Fix permissions warning: `chmod 700 /home/ubuntu/.openclaw`.",
+    "Set up a structured daily brief template.",
+    "Add project tracking workflow (weekly review)."
+  ]
+}
