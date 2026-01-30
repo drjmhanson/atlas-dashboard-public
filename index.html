@@ -51,6 +51,18 @@
       <ul id="molt"></ul>
       <div class="muted" id="moltEmpty" style="display:none;">No digest yet.</div>
     </div>
+
+    <div class="card">
+      <h2>Active Projects</h2>
+      <ul id="projects"></ul>
+      <div class="muted" id="projectsEmpty" style="display:none;">No projects listed.</div>
+    </div>
+
+    <div class="card">
+      <h2>Completed (from BACKLOG)</h2>
+      <ul id="done"></ul>
+      <div class="muted" id="doneEmpty" style="display:none;">Nothing completed yet.</div>
+    </div>
   </div>
 
   <div class="card" style="margin-top:16px;">
@@ -87,6 +99,8 @@ async function main() {
   setList(document.getElementById('queue'), document.getElementById('queueEmpty'), s.queue);
   setList(document.getElementById('blockers'), document.getElementById('blockersEmpty'), s.blockers);
   setList(document.getElementById('molt'), document.getElementById('moltEmpty'), (s.moltbook && s.moltbook.items) ? s.moltbook.items : []);
+  setList(document.getElementById('projects'), document.getElementById('projectsEmpty'), s.projects || []);
+  setList(document.getElementById('done'), document.getElementById('doneEmpty'), s.done || []);
 }
 
 main().catch(err => {
